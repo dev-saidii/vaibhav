@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav | Civil Engineer | NIT Surat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        :root {
+            --main-bg: #f9fafb;
+            --main-green: #36a169;
+            --main-orange: #ff9000;
+            --contrast-bg: #fff;
+            --deep-gray: #22223b;
+            --mid-gray: #656575;
+            --light-gray: #e4eaf0;
+            --card-shadow: 0 2px 20px 0 rgba(34,34,59,0.10);
+        }
+        html, body {height:100%; margin:0; padding:0; font-family:'Segoe UI',sans-serif; background:var(--main-bg);}
+        body {display: flex;}
+        /* Sidebar style */
+        .sidebar {
+            background: var(--contrast-bg);
+            min-width: 250px;
+            max-width: 270px;
+            height: 100vh;
+            box-shadow: 2px 0 12px rgba(34,34,59,0.10);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+        }
+        .sidebar .avatar {
+            margin-top: 48px;
+            border-radius: 50%;
+            border: 5px solid var(--main-green);
+            width: 110px; height: 110px;
+            object-fit: cover;
+            box-shadow: 0 3px 20px #36a16919;
+        }
+        .sidebar h1 {
+            margin: 25px 0 6px 0;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: var(--deep-gray);
+        }
+        .sidebar h2 {
+            margin: 0 0 17px 0;
+            font-size: 1.04em;
+            color: var(--main-green);
+            font-weight:600;
+            letter-spacing:1.2px;
+        }
+        .sidebar nav {
+            margin:32px 0 0 0;
+            width: 100%;
+            text-align: center;
+        }
+        .sidebar nav a {
+            text-decoration: none;
+            color: var(--mid-gray);
+            font-size: 1.04em;
+            padding: 12px 36px;
+            display: block;
+            transition: all 0.13s;
+            border-radius:2em 0 0 2em;
+            margin:1px 0;
+        }
+        .sidebar nav a.active, .sidebar nav a:hover {
+            background: linear-gradient(90deg,var(--main-green) 90%,var(--main-orange) 100%);
+            color:#fff;
+            font-weight:600;
+        }
+        .sidebar .contact-icons {
+            margin-top:auto;
+            margin-bottom:38px;
+        }
+        .sidebar .contact-icons a {
+            margin:0 6px;
+            color: var(--main-green);
+            background: #e9f9f1;
+            border-radius:50%;
+            width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;
+            font-size:1.13em;
+            transition:.13s;
+        }
+        .sidebar .contact-icons a:hover { color: #fff; background: var(--main-green);}
+        /* Main content area */
+        .main {
+            margin-left: 270px;
+            width: 100%;
+            padding: 0;
+        }
+        section {
+            padding: 56px 5vw 24px 5vw;
+        }
+        .section-title {
+            font-size:2em;font-weight:700;margin:0 0 34px 0;color:var(--main-green);letter-spacing:1.1px;
+        }
+        .about-card {
+            background: var(--contrast-bg);
+            border-radius:22px;
+            box-shadow: var(--card-shadow);
+            padding: 36px;
+            margin-bottom:32px;
+            display:grid;grid-template-columns:1fr 1fr;gap:4vw;
+        }
+        .about-card ul {
+            margin-top:16px; color:var(--mid-gray);
+        }
+        /* Education timeline */
+        .timeline {
+            position:relative;padding-left:35px; list-style:none;
+        }
+        .timeline:before {
+            content:"";
+            position:absolute;left:8px;top:0;bottom:0;width:4px;
+            background:linear-gradient(var(--main-green),var(--main-orange));
+            border-radius:2px;
+        }
+        .timeline li {
+            position:relative;margin-bottom:33px;padding-left:24px;
+        }
+        .timeline li:last-child{margin-bottom:0;}
+        .timeline-dot {
+            position:absolute;left:-5px;top:3px;width:18px;height:18px;
+            border-radius:50%;background:var(--main-green);box-shadow:0 2px 8px #36a16959;
+            border:3px solid #fff;
+        }
+        .timeline .timeline-title {font-weight:700;color:#222; margin-bottom:3px;}
+        .timeline .timeline-desc {color: var(--mid-gray);}
+        .timeline .timeline-date {
+            font-size:0.94em;
+            color:var(--main-orange);
+            font-weight:600;
+            margin-top:2px;
+        }
+        /* Experience and Projects cards */
+        .row-cards {
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap: 2vw;
+        }
+        .card {
+            background: var(--contrast-bg);
+            border-radius:16px;
+            box-shadow: var(--card-shadow);
+            padding: 30px 26px 32px 26px;
+            margin-bottom: 22px;
+            position:relative;
+            transition: transform .2s;
+        }
+        .card:hover{transform:translateY(-8px) scale(1.02);}
+        .card-title { font-size:1.17em; color:var(--main-green); font-weight:700; margin-bottom:6px;}
+        .card-org { color:var(--main-orange); font-weight:600; }
+        .card-period { color:var(--mid-gray); font-size:0.98em;margin-bottom:10px;}
+        .card-desc { margin:10px 0 13px 0; color:var(--mid-gray);}
+        .card-tech {font-size:.96em;}
+        .card-tech span {
+            background: #e9f9f1;
+            color: var(--main-green);
+            border-radius:11px;
+            padding: 2px 10px;
+            margin: 0 5px 5px 0;
+            display:inline-block;
+            font-weight:600;
+        }
+        /* Skill bars */
+        .skills-list {
+            display:grid;grid-template-columns:1fr 1fr;gap:20px 6vw;max-width:775px;
+        }
+        .skill-row {
+            margin-bottom:20px;
+        }
+        .skill-name {color:var(--deep-gray); font-size:1em; margin-bottom:3px;}
+        .sbar-bg {
+            background:#eee;
+            height: 13px;
+            border-radius:11px;
+        }
+        .sbar {
+            height:100%;
+            border-radius:12px;
+            transition:width .9s;
+        }
+        .sbar-green { background:linear-gradient(90deg,var(--main-green) 70%,var(--main-orange) 100%);}
+        /* Contact form */
+        .contact-form {
+            background: var(--contrast-bg); box-shadow: var(--card-shadow);
+            border-radius:20px;max-width:530px;padding:26px 38px; margin-top:2vw;
+        }
+        .contact-form h3{margin-top:0;}
+        .contact-form input, .contact-form textarea {
+            width: 100%; font-size:1em;
+            padding: 9px 13px; margin:9px 0 22px 0; border:1.1px solid #e5e5e5; border-radius:7px;
+            background: #f5fcff;
+        }
+        .contact-form textarea { min-height:90px; }
+        .contact-form button {
+            background: linear-gradient(90deg,var(--main-green) 75%,var(--main-orange) 100%);
+            color:#fff; padding:10px 30px; border:none; border-radius:9px;
+            font-size:1.05em;font-weight:600; letter-spacing:0.3px;cursor:pointer;box-shadow:0 2px 8px #36a16933;
+        }
+        .@media (max-width:960px) {
+            .row-cards { grid-template-columns:1fr 1fr; }
+            .about-card { grid-template-columns:1fr; }
+            .main { margin-left: 0; }
+        }
+        @media (max-width:700px) {
+            .sidebar { position:relative; min-width:100vw; max-width:100vw; height:auto; flex-direction:row; justify-content:space-between; align-items:center; padding:12px 0;}
+            .sidebar .avatar{width:60px; height:60px; margin-top:0;}
+            .main {margin:0;}
+            .about-card { padding:18px 12px;}
+            section { padding:38px 6vw 12px 6vw;}
+            .row-cards { grid-template-columns:1fr; }
+            .skills-list{grid-template-columns:1fr;}
+            .contact-form{padding:12px 7px;}
+        }
+        /* Footer bar */
+        .footer {
+            text-align:center;padding:19px 0;color:var(--main-green);background:var(--contrast-bg);margin-top:24px;
+            letter-spacing:1px;font-size:1em;border-radius:16px 16px 0 0;box-shadow:0 -2px 20px #22223b07;
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <img class="avatar" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?fit=facearea&w=550&h=550" alt="Vaibhav - Civil Engineer"/>
+    <h1>Vaibhav</h1>
+    <h2>Civil Engineering<br>NIT Surat</h2>
+    <nav>
+        <a href="#about" class="active">About</a>
+        <a href="#education">Education</a>
+        <a href="#exp">Internships</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="contact-icons">
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:vaibhav.nit@surat.ac.in" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+</div>
+<div class="main">
+    <section id="about">
+        <div class="section-title">About Me</div>
+        <div class="about-card">
+            <div>
+                <p>
+                    Friendly, driven and detail-oriented Civil Engineering undergraduate from <b>NIT Surat</b>, passionate about <b>infrastructure design, green construction and innovation</b>.   
+                    Experienced in industry internships, collaborative site work, and digital tools for design & project management. Always eager to bridge engineering principles with real-world problem solving!
+                </p>
+                <ul>
+                    <li>🏗️  Strong interest in sustainable construction and smart city planning</li>
+                    <li>🏆  Secured 2nd place in national "Future of Smart Roads" contest (2024)</li>
+                    <li>🤝  VP, ASCE Student Chapter @ NIT Surat</li>
+                </ul>
+            </div>
+            <div>
+                <div style="font-weight:600; margin-top:6px;">Quick Facts</div>
+                <ul style="margin:14px 0 0 0;padding:0;list-style:none;">
+                    <li><b>Internships:</b> 3 at top infra firms</li>
+                    <li><b>Projects:</b> 6 (Bridges, Site Apps, Design)</li>
+                    <li><b>Technical Clubs:</b> 2 (CivilSoc, ASCE)</li>
+                </ul>
+                <div style="margin-top:28px; font-weight:600;">Location: Surat, Gujarat, India</div>
+                <div>Email: <a href="mailto:vaibhav.nit@surat.ac.in" style="color:var(--main-green)">vaibhav.nit@surat.ac.in</a></div>
+            </div>
+        </div>
+    </section>
+    <section id="education">
+        <div class="section-title">Education</div>
+        <ul class="timeline">
+            <li>
+                <span class="timeline-dot"></span>
+                <div class="timeline-title">B.Tech, Civil Engineering</div>
+                <div class="timeline-desc">Sardar Vallabhbhai National Institute of Technology (NIT Surat)</div>
+                <div class="timeline-date">2021 – 2025</div>
+                <div style="color:#444; margin-top:3px;">CGPA: 8.51/10</div>
+                <div style="color:#777;">Specialization: Structural Analysis & Green Construction</div>
+            </li>
+            <li>
+                <span class="timeline-dot"></span>
+                <div class="timeline-title">Higher Secondary Education</div>
+                <div class="timeline-desc">DPS Kanpur</div>
+                <div class="timeline-date">2019 – 2021</div>
+                <div style="color:#444; margin-top:3px;">Percentage: 95.6%</div>
+                <div style="color:#777;">Stream: Physics, Chemistry, Maths</div>
+            </li>
+        </ul>
+    </section>
+    <section id="exp">
+        <div class="section-title">Internships & Experience</div>
+        <div class="row-cards">
+            <div class="card">
+                <div class="card-title">Site Engineering Intern</div>
+                <div class="card-org">Larsen & Toubro Construction</div>
+                <div class="card-period">May 2024 – Jul 2024</div>
+                <div class="card-desc">
+                    Worked on the execution of elevated metro viaducts (Metro Surat Phase II). Monitored rebar arrangement, QC, and implemented on-site app for material traceability, resulting in <b>saving 12% time in inspections</b>.
+                </div>
+                <div class="card-tech">
+                    <span>AutoCAD</span><span>MS Project</span><span>Site Management</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">Structural Design Intern</div>
+                <div class="card-org">AECOM India Pvt Ltd</div>
+                <div class="card-period">Dec 2023 – Jan 2024</div>
+                <div class="card-desc">
+                    Modeled RCC & steel members for a smart commercial park in Surat. Performed stability checks (STAAD Pro), earthquake load design, and optimized column spacing for material efficiency.
+                </div>
+                <div class="card-tech">
+                    <span>STAAD Pro</span><span>ETABS</span><span>Revit</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">Research Trainee – Pavement Design</div>
+                <div class="card-org">Central Road Research Institute (CRRI)</div>
+                <div class="card-period">May 2023 – Jul 2023</div>
+                <div class="card-desc">
+                    Assisted in field data testing & analysis for "Performance of High-Strength Flexible Pavements in Hot Regions".  
+                    Developed Python script to automate rutting data analysis & visualization.
+                </div>
+                <div class="card-tech">
+                    <span>Pavement Analysis</span><span>Python</span><span>Data Visualization</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+        <div class="section-title">Key Projects</div>
+        <div class="row-cards">
+            <div class="card">
+                <div class="card-title">AI-Based On-Site Quality Inspector</div>
+                <div class="card-org">NIT Surat Capstone (2025)</div>
+                <div class="card-desc">
+                    Developed a mobile app using TensorFlow Lite to identify common defects in brickwork and formwork from photos, reducing manual QC effort by 30% in campus construction sites.
+                </div>
+                <div class="card-tech">
+                    <span>TensorFlow Lite</span><span>Kivy</span><span>QC Automation</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">Urban “Pocket” Bridge Design</div>
+                <div class="card-org">Case Study – Surat Smart City (2024)</div>
+                <div class="card-desc">
+                    Designed a modular pedestrian bridge for busy urban locations.  
+                    Optimized for pre-cast execution; won top 5 entry at "Smart Infra 2024" (IIT Bombay).
+                </div>
+                <div class="card-tech">
+                    <span>AutoCAD</span><span>Pre-cast Design</span><span>Sustainable Materials</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">Recycled Concrete Mix App</div>
+                <div class="card-org">Academic Project (2023)</div>
+                <div class="card-desc">
+                    Developed Excel-based tool for optimum recycled aggregate mix design complying with IS 456:2000 guidelines, tested at NIT Surat Structures Lab.
+                </div>
+                <div class="card-tech">
+                    <span>Excel VBA</span><span>Mix Design</span><span>IS Codes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills-list">
+            <div class="skill-row">
+                <div class="skill-name">AutoCAD, Civil 3D</div>
+                <div class="sbar-bg"><div class="sbar sbar-green" style="width:92%"></div></div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-name">STAAD Pro & ETABS</div>
+                <div class="sbar-bg"><div class="sbar sbar-green" style="width:87%"></div></div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-name">Site Execution & Management</div>
+                <div class="sbar-bg"><div class="sbar sbar-green" style="width:88%"></div></div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-name">QGIS & Mapping</div>
+                <div class="sbar-bg"><div class="sbar sbar-green" style="width:80%"></div></div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-name">Microsoft Project</div>
+                <div class="sbar-bg"><div class="sbar sbar-green" style="width:82%"></div></div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-name">Python (Data/CI)</div>
+                <div class="sbar-bg"><div class="sbar sbar-green" style="width:75%"></div></div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-name">Revit & BIM</div>
+                <div class="sbar-bg"><div class="sbar sbar-green" style="width:68%"></div></div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-name">VBA, Excel Proficiency</div>
+                <div class="sbar-bg"><div class="sbar sbar-green" style="width:79%"></div></div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="section-title">Contact Me</div>
+        <div class="contact-form">
+            <h3>Let's connect!</h3>
+            <form onsubmit="alert('Thanks for your message, Vaibhav will get back to you!');return false;">
+                <input type="text" placeholder="Your Name" required/>
+                <input type="email" placeholder="Your Email" required/>
+                <textarea placeholder="Message" required></textarea>
+                <button type="submit"><i class="fa fa-paper-plane"></i> Send</button>
+            </form>
+            <div style="margin-top:12px;color:var(--main-green)">
+                <i class="fa fa-envelope"></i> vaibhav.nit@surat.ac.in<br>
+                <i class="fa fa-map-marker-alt"></i> Surat, Gujarat, India<br>
+            </div>
+        </div>
+    </section>
+    <div class="footer">
+        © 2025 Vaibhav | Civil Engineering | NIT Surat. Made with <span style="color:#ff9000;">&#9829;</span> and innovation.
+    </div>
+</div>
+<script>
+    // Sidebar navigation highlight
+    document.querySelectorAll('.sidebar nav a').forEach(link=>{
+        link.addEventListener('click',()=> {
+            document.querySelectorAll('.sidebar nav a').forEach(l=>l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+    // Simple smooth scroll (modern browsers)
+    document.querySelectorAll('.sidebar nav a').forEach(link=>{
+        link.addEventListener('click',function(e){
+            if(this.getAttribute('href').startsWith('#')){
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+            }
+        });
+    });
+</script>
+</body>
+</html>

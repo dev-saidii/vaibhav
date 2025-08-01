@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav | Civil Engineering Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a365d',
+                        secondary: '#2b6cb0',
+                        accent: '#3182ce',
+                        dark: '#0f172a',
+                        light: '#f8fafc'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-pattern {
+            background: radial-gradient(circle, rgba(30,41,59,0.5) 0%, rgba(15,23,42,0.8) 100%);
+        }
+        
+        .card-gradient {
+            background: linear-gradient(145deg, rgba(26,54,93,0.7) 0%, rgba(15,23,42,0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(56, 178, 172, 0.1);
+        }
+        
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #3182ce, #63b3ed);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #3182ce, #63b3ed);
+            border-radius: 2px;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Header -->
+    <header class="fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-white">
+                <span class="text-accent">V</span>aibhav
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-white hover:text-accent transition">Home</a>
+                <a href="#about" class="text-white hover:text-accent transition">About</a>
+                <a href="#skills" class="text-white hover:text-accent transition">Skills</a>
+                <a href="#projects" class="text-white hover:text-accent transition">Projects</a>
+                <a href="#contact" class="text-white hover:text-accent transition">Contact</a>
+            </div>
+            <button class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 hero-pattern"></div>
+        <div class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center content-layer">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    Hi, I'm <span class="text-accent">Vaibhav</span>
+                </h1>
+                <div class="text-xl md:text-2xl mb-6">
+                    <span class="text-secondary">Civil Engineering Student</span> at SVNIT Surat
+                </div>
+                <p class="text-lg mb-8 max-w-lg">
+                    Passionate about structural design, sustainable construction, and innovative engineering solutions for modern infrastructure.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#projects" class="px-6 py-3 bg-accent text-white rounded-lg font-medium hover:bg-secondary transition transform hover:-translate-y-1">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="px-6 py-3 bg-transparent border-2 border-accent text-white rounded-lg font-medium hover:bg-accent transition">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent shadow-xl">
+                        <div class="w-full h-full bg-gray-200 border-2 border-dashed rounded-xl flex items-center justify-center text-gray-500">
+                            <i class="fas fa-user text-8xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary rounded-full -z-10 floating"></div>
+                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-accent rounded-full -z-10 floating" style="animation-delay: 1.5s"></div>
+                    <div class="absolute top-20 -right-20 w-16 h-16 bg-secondary rounded-full -z-10 floating" style="animation-delay: 2.5s"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6 content-layer">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center section-title">About Me</h2>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <div class="w-56 h-56 bg-gray-800 rounded-xl transform rotate-6"></div>
+                        <div class="w-56 h-56 bg-gradient-to-br from-accent to-secondary rounded-xl absolute top-3 left-3 -rotate-6 shadow-2xl flex items-center justify-center">
+                            <div class="text-8xl text-white">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 md:pl-16">
+                    <h3 class="text-2xl font-bold mb-4 text-accent">Civil Engineering Student</h3>
+                    <p class="mb-6 text-lg">
+                        I'm a dedicated BTech Civil Engineering student at SVNIT Surat with a passion for innovative engineering solutions. My academic journey has equipped me with strong technical knowledge and practical skills in structural design, construction management, and sustainable development.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="text-accent text-xl mr-4">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Education</h4>
+                                <p>B.Tech in Civil Engineering</p>
+                                <p class="text-secondary">SVNIT Surat | 2020-2024</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-accent text-xl mr-4">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Experience</h4>
+                                <p>Intern at Reliance Industries</p>
+                                <p>Research Intern at SVNIT</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-accent text-xl mr-4">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Specialization</h4>
+                                <p>Structural Engineering</p>
+                                <p>Construction Technology</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-accent text-xl mr-4">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Achievements</h4>
+                                <p>Top 5% in Academic Performance</p>
+                                <p>Published Research on Sustainable Materials</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="container mx-auto px-6 content-layer">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center section-title">Civil Engineering Skills</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Structural Analysis</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">AutoCAD & Revit</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Construction Management</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Concrete Technology</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Geotechnical Engineering</span>
+                            <span>82%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 82%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Sustainable Design</span>
+                            <span>87%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 87%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="card-gradient p-6 rounded-xl text-center hover:shadow-xl transition">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Design & Drafting</h3>
+                    <p class="text-sm">Structural design and technical drawings</p>
+                </div>
+                
+                <div class="card-gradient p-6 rounded-xl text-center hover:shadow-xl transition">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Site Management</h3>
+                    <p class="text-sm">Construction site supervision</p>
+                </div>
+                
+                <div class="card-gradient p-6 rounded-xl text-center hover:shadow-xl transition">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Sustainable Materials</h3>
+                    <p class="text-sm">Eco-friendly construction solutions</p>
+                </div>
+                
+                <div class="card-gradient p-6 rounded-xl text-center hover:shadow-xl transition">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Cost Estimation</h3>
+                    <p class="text-sm">Project budgeting and planning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative">
+        <div class="container mx-auto px-6 content-layer">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center section-title">Civil Engineering Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="card-gradient rounded-xl overflow-hidden project-card transition-all duration-500">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-r from-accent to-secondary flex items-center justify-center">
+                            <i class="fas fa-bridge text-8xl text-white"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-sm">
+                            Structural
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Seismic-Resistant Bridge Design</h3>
+                        <p class="text-sm mb-4 text-gray-300">Developed an innovative bridge design using advanced materials to withstand high-magnitude earthquakes.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-accent font-medium">SVNIT Research Project</span>
+                            <a href="#" class="text-secondary hover:text-accent transition">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="card-gradient rounded-xl overflow-hidden project-card transition-all duration-500">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-r from-secondary to-accent flex items-center justify-center">
+                            <i class="fas fa-building text-8xl text-white"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-sm">
+                            Sustainable
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Green Commercial Complex</h3>
+                        <p class="text-sm mb-4 text-gray-300">Designed an eco-friendly commercial building with rainwater harvesting and solar integration.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-accent font-medium">College Project</span>
+                            <a href="#" class="text-secondary hover:text-accent transition">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="card-gradient rounded-xl overflow-hidden project-card transition-all duration-500">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-r from-accent to-secondary flex items-center justify-center">
+                            <i class="fas fa-road text-8xl text-white"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-sm">
+                            Infrastructure
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Smart Highway System</h3>
+                        <p class="text-sm mb-4 text-gray-300">Developed a cost-effective highway design with integrated sensor technology for real-time monitoring.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-accent font-medium">Reliance Internship</span>
+                            <a href="#" class="text-secondary hover:text-accent transition">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="container mx-auto px-6 content-layer">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center section-title">Get In Touch</h2>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <div class="bg-gradient-to-br from-primary to-dark rounded-2xl p-8 shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="text-accent text-xl mr-4 mt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Email</h4>
+                                    <p>vaibhav.civil@svnit.ac.in</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-accent text-xl mr-4 mt-1">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Phone</h4>
+                                    <p>+91 98765 43210</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-accent text-xl mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Location</h4>
+                                    <p>SVNIT Surat, Gujarat, India</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10 flex justify-center space-x-6">
+                            <a href="#" class="w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:bg-accent transition">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:bg-accent transition">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:bg-accent transition">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="card-gradient rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Send a Message</h3>
+                        
+                        <form>
+                            <div class="mb-6">
+                                <label class="block text-gray-300 mb-2" for="name">Name</label>
+                                <input type="text" id="name" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-accent">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-300 mb-2" for="email">Email</label>
+                                <input type="email" id="email" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-accent">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-300 mb-2" for="message">Message</label>
+                                <textarea id="message" rows="5" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-accent"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-accent text-white py-3 rounded-lg font-medium hover:bg-secondary transition">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center mb-6">
+                <div class="w-16 h-1 bg-accent rounded-full"></div>
+            </div>
+            <div class="text-xl font-bold mb-2">
+                <span class="text-accent">V</span>aibhav
+            </div>
+            <p class="text-gray-400 mb-6">Civil Engineering Student & Innovator</p>
+            <p class="text-gray-500 text-sm">
+                © 2023 Vaibhav. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Particles JS -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#3182ce" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#3182ce",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.project-card, .section-title').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
