@@ -278,8 +278,9 @@
                 <a href="#projects" class="text-white hover:text-accent transition">Projects</a>
                 <a href="#contact" class="text-white hover:text-accent transition">Contact</a>
             </div>
-            <button class="md:hidden text-white">
-                <i class="fas fa-bars text-2xl"></i>
+            <!-- Fixed: Added IDs to button and icon -->
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i id="menu-icon" class="fas fa-bars text-2xl"></i>
             </button>
         </nav>
         <!-- Mobile Menu -->
@@ -848,21 +849,39 @@
             observer.observe(el);
         });
 
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle - Fixed implementation
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
         const closeMenuButton = document.getElementById('close-menu');
 
+        // Toggle mobile menu
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('open');
-            menuIcon.classList.toggle('fa-bars');
-            menuIcon.classList.toggle('fa-times');
+            // Toggle between hamburger and close icon
+            if (menuIcon.classList.contains('fa-bars')) {
+                menuIcon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                menuIcon.classList.replace('fa-times', 'fa-bars');
+            }
         });
 
+        // Close mobile menu
         closeMenuButton.addEventListener('click', () => {
             mobileMenu.classList.remove('open');
             menuIcon.classList.replace('fa-times', 'fa-bars');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const isMenuOpen = mobileMenu.classList.contains('open');
+            const isClickInsideMenu = mobileMenu.contains(e.target);
+            const isClickOnButton = mobileMenuButton.contains(e.target);
+            
+            if (isMenuOpen && !isClickInsideMenu && !isClickOnButton) {
+                mobileMenu.classList.remove('open');
+                menuIcon.classList.replace('fa-times', 'fa-bars');
+            }
         });
     </script>
 </body>
